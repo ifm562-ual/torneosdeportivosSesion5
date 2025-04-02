@@ -3,7 +3,10 @@ package org.ualhmis.torneos;
 import java.time.LocalDate;
 
 class Jugador extends Persona {
+	
     private String categoria;
+    private Genero genero;
+    private Fecha fechaNac;
 
     public Jugador(String nombre, String genero, LocalDate fechaNacimiento) {
         super(nombre, genero, fechaNacimiento);
