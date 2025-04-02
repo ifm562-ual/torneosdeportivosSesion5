@@ -5,9 +5,21 @@ import java.time.LocalDate;
 class Jugador extends Persona {
 	
     private String categoria;
-    private Genero genero;
+    private Equipo eq;
 
-    public Jugador(String nombre, String genero, LocalDate fechaNacimiento) {
+	public Equipo getEq() {
+		return eq;
+	}
+
+	public void setEq(Equipo eq) {
+		this.eq = eq;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public Jugador(String nombre, String genero, LocalDate fechaNacimiento) {
         super(nombre, genero, fechaNacimiento);
         this.categoria = determinarCategoria(calcularEdad());
     }
