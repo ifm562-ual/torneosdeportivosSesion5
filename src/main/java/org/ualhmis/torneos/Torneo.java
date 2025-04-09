@@ -10,6 +10,7 @@ class Torneo {
     private String modalidad;
     private List<Equipo> equipos;
     private GestorTorneos gt;
+    
     public GestorTorneos getGt() {
 		return gt;
 	}

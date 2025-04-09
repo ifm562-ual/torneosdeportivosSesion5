@@ -17,6 +17,10 @@ class TorneoTest {
 			{
 				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
 				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres','Masculino'",
+				
+				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
 				+ "'Tigres','Masculino'"
 			}
 	)
@@ -28,11 +32,10 @@ class TorneoTest {
     ) 
 	{
         Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
-        
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
-        
         Equipo equipo = new Equipo(nombreEquipo, categoriaTorneo, modalidadTorneo, entrenador);
-
+        
+        torneo.registrarEquipo(new Equipo("JuanjoClub", "Juvenil", "Masculino", entrenador));
         torneo.registrarEquipo(equipo);
 
         assertEquals(1, torneo.getEquipos().size());
