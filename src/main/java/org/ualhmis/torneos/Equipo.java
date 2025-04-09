@@ -85,8 +85,6 @@ class Equipo {
 		this.jugadores = jugadores;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Equipo [nombre=" + nombre + ", categoria=" + categoria + ", modalidad=" + modalidad + ", entrenador="

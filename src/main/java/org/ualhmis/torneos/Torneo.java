@@ -9,7 +9,16 @@ class Torneo {
     private String categoria;
     private String modalidad;
     private List<Equipo> equipos;
-    private String tipo;
+    private GestorTorneos gt;
+    public GestorTorneos getGt() {
+		return gt;
+	}
+
+	public void setGt(GestorTorneos gt) {
+		this.gt = gt;
+	}
+
+	private String tipo;
 
     public Torneo(String nombre, String deporte, String categoria, String modalidad, String tipo) {
         this.nombre = nombre;
@@ -21,11 +30,12 @@ class Torneo {
     }
 
     public void registrarEquipo(Equipo equipo) {
+    	
         if (!equipo.getCategoria().equals(this.categoria) || !equipo.getModalidad().equals(this.modalidad)) {
             throw new IllegalArgumentException("El equipo no cumple con la categoría y modalidad del torneo");
         }
         if (!equipos.contains(equipo)) {
-            equipos.add(equipo);
+            equipos.add(equipo);   
         }
     }
 

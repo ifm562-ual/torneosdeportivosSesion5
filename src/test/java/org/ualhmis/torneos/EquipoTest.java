@@ -9,7 +9,7 @@ class EquipoTest {
 
     @Test
     void testAgregarJugadorCorrectamente() {
-        Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10));
+        Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10), true);
         Equipo equipo = new Equipo("Tigres", "Juvenil", "Masculino", entrenador);
 
         Jugador jugador = new Jugador("Luis", "Masculino", LocalDate.of(2006, 7, 15)); // Juvenil
@@ -20,7 +20,7 @@ class EquipoTest {
 
     @Test
     void testNoAgregarJugadorDeDiferenteCategoria() {
-        Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10));
+        Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10), true);
         Equipo equipo = new Equipo("Tigres", "Juvenil", "Masculino", entrenador);
 
         Jugador jugador = new Jugador("Luis", "Masculino", LocalDate.of(2015, 5, 10)); // Infantil
@@ -32,8 +32,8 @@ class EquipoTest {
 
     @Test
     void testAsignarSegundoEntrenador() {
-        Entrenador entrenador1 = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10));
-        Entrenador entrenador2 = new Entrenador("Ana", "Femenino", LocalDate.of(1985, 6, 20));
+        Entrenador entrenador1 = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10), false);
+        Entrenador entrenador2 = new Entrenador("Ana", "Femenino", LocalDate.of(1985, 6, 20), false);
 
         Equipo equipo = new Equipo("Tigres", "Juvenil", "Masculino", entrenador1);
         equipo.asignarSegundoEntrenador(entrenador2);
