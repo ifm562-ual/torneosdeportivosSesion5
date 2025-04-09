@@ -80,7 +80,6 @@ class TorneoTest {
     ) 
     {
         Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
-        
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
         
         Equipo equipo = new Equipo(nombreEquipo, categoriaEquipo, modalidadEquipo, entrenador);
