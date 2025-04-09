@@ -1,41 +1,86 @@
 package org.ualhmis.torneos;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import java.time.LocalDate;
 
 // Creación de jugadores y cálculo automático de categoría
 
 class EquipoTest {
 
-    @Test
-    void testAgregarJugadorCorrectamente() {
-        Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10), true);
-        Equipo equipo = new Equipo("Tigres", "Juvenil", "Masculino", entrenador);
-
-        Jugador jugador = new Jugador("Luis", "Masculino", LocalDate.of(2006, 7, 15)); // Juvenil
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres, Juvenil, Masculino'" 
+				+ "'Luis','Masculino', '2006-07-15'"
+			}
+	)
+    void testAgregarJugadorCorrectamente
+    (
+    		String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal,
+    		String nombreEq, String categEq, String generoEq,
+    		String nombreJug, String generoJug, LocalDate fechaNacJug
+    ) 
+	{
+        Entrenador entrenador = new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal);
+        Equipo equipo = new Equipo(nombreEq, categEq, generoEq, entrenador);
+        
+        Jugador jugador = new Jugador(nombreJug, generoJug, fechaNacJug); // Juvenil
         equipo.agregarJugador(jugador);
 
         assertEquals(1, equipo.getJugadores().size());
     }
 
-    @Test
-    void testNoAgregarJugadorDeDiferenteCategoria() {
-        Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10), true);
-        Equipo equipo = new Equipo("Tigres", "Juvenil", "Masculino", entrenador);
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres, Juvenil, Masculino'" 
+				+ "'Luis','Masculino', '2015-05-10'"
+			}
+	)
+    void testNoAgregarJugadorDeDiferenteCategoria
+    (
+    		String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal,
+    		String nombreEq, String categEq, String generoEq,
+    		String nombreJug, String generoJug, LocalDate fechaNacJug
+    ) 
+	{
+        Entrenador entrenador = new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal);
+        Equipo equipo = new Equipo(nombreEq, categEq, generoEq, entrenador);
 
-        Jugador jugador = new Jugador("Luis", "Masculino", LocalDate.of(2015, 5, 10)); // Infantil
+        Jugador jugador = new Jugador(nombreJug, generoJug, fechaNacJug); // Infantil
 
         equipo.agregarJugador(jugador);
 
         assertEquals(0, equipo.getJugadores().size()); // No debe agregarse
     }
 
-    @Test
-    void testAsignarSegundoEntrenador() {
-        Entrenador entrenador1 = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10), false);
-        Entrenador entrenador2 = new Entrenador("Ana", "Femenino", LocalDate.of(1985, 6, 20), false);
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'Carlos','Masculino','1980-03-10','true', "
+				+ "'Ana', 'Femenino', '1985-06-20', false"
+				+ "'Tigres, Juvenil, Masculino'" 
+			}
+	)
+    void testAsignarSegundoEntrenador
+    (
+    		String nombreEnt1, String generoEnt1, LocalDate fechaNacEnt1,
+    		String nombreEnt2, String generoEnt2, LocalDate fechaNacEnt2,
+    		String nombreEq, String categEq, String modalidadEq
+    ) 
+	{
+        Entrenador entrenador1 = new Entrenador(nombreEnt1, generoEnt1, fechaNacEnt1, true);
+        Entrenador entrenador2 = new Entrenador(nombreEnt2, generoEnt2, fechaNacEnt2, false);
 
-        Equipo equipo = new Equipo("Tigres", "Juvenil", "Masculino", entrenador1);
+        Equipo equipo = new Equipo(nombreEq, categEq, modalidadEq, entrenador1);
         equipo.asignarSegundoEntrenador(entrenador2);
 
         assertNotNull(equipo.getSegundoEntrenador());
