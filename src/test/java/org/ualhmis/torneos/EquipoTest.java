@@ -15,7 +15,7 @@ class EquipoTest {
 	(
 			{
 				"'Carlos','Masculino','1980-03-10','true', "
-				+ "'Tigres, Juvenil, Masculino'" 
+				+ "'Tigres', 'Juvenil', 'Masculino', " 
 				+ "'Luis','Masculino', '2006-07-15'"
 			}
 	)
@@ -40,7 +40,7 @@ class EquipoTest {
 	(
 			{
 				"'Carlos','Masculino','1980-03-10','true', "
-				+ "'Tigres, Juvenil, Masculino'" 
+				+ "'Tigres', 'Juvenil', 'Masculino', " 
 				+ "'Luis','Masculino', '2015-05-10'"
 			}
 	)
@@ -65,9 +65,9 @@ class EquipoTest {
 	@CsvSource
 	(
 			{
-				"'Carlos','Masculino','1980-03-10','true', "
-				+ "'Ana', 'Femenino', '1985-06-20', false"
-				+ "'Tigres, Juvenil, Masculino'" 
+				"'Carlos','Masculino','1980-03-10', "
+				+ "'Ana', 'Femenino', '1985-06-20', "
+				+ "'Tigres', 'Juvenil', 'Masculino'" 
 			}
 	)
     void testAsignarSegundoEntrenador
