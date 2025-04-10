@@ -11,7 +11,7 @@ import java.time.LocalDate;
 // Registro de partidos y validación de resultados
 
 
-class TorneoTest extends SetterGettersTesteados {
+class TorneoTest {
 
 	@ParameterizedTest
 	@CsvSource
