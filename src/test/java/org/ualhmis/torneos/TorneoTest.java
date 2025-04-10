@@ -4,21 +4,19 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.awt.List;
+import java.lang.reflect.Method;
 import java.time.LocalDate;
 
 // Registro de partidos y validación de resultados
 
 
-class TorneoTest {
+class TorneoTest extends SetterGettersTesteados {
 
 	@ParameterizedTest
 	@CsvSource
 	(
 			{
-				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
-				+ "'Carlos','Masculino','1980-03-10','true', "
-				+ "'Tigres','Masculino'",
-				
 				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
 				+ "'Carlos','Masculino','1980-03-10','true', "
 				+ "'Tigres','Masculino'"
@@ -35,7 +33,7 @@ class TorneoTest {
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
         Equipo equipo = new Equipo(nombreEquipo, categoriaTorneo, modalidadTorneo, entrenador);
         
-        torneo.registrarEquipo(new Equipo("JuanjoClub", "Juvenil", "Masculino", entrenador));
+        torneo.registrarEquipo(equipo);
         torneo.registrarEquipo(equipo);
 
         assertEquals(1, torneo.getEquipos().size());
@@ -89,4 +87,6 @@ class TorneoTest {
 
         assertThrows(IllegalArgumentException.class, () -> torneo.registrarEquipo(equipo));
     }
+	
+	
 }
