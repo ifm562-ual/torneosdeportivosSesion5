@@ -171,4 +171,50 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 		
 	}
 	
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true'"
+			}
+	)
+	void testToString
+	(
+			String nombre, String categoria, String modalidad,
+			String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal
+	) 
+	{
+		Equipo eq = new Equipo(nombre, categoria, modalidad, new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal));
+		assertEquals
+		(
+				eq.toString(),
+				"Equipo [nombre=EquipoCinco, categoria=Junior, modalidad=Masculino, entrenador=Entrenador Pepe, segundoEntrenador=null, jugadores=[]]"
+	    );
+		
+	}
+	
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true'"
+			}
+	)
+	void testEquals
+	(
+			String nombre, String categoria, String modalidad,
+			String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal
+	) 
+	{
+		Equipo eq = new Equipo(nombre, categoria, modalidad, new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal));
+		Equipo eq2 = eq;
+		Equipo eq3 = null;
+		assertEquals
+		(
+				eq.toString(),
+				"Equipo [nombre=EquipoCinco, categoria=Junior, modalidad=Masculino, entrenador=Entrenador Pepe, segundoEntrenador=null, jugadores=[]]"
+	    );
+		
+	}
+	
 }

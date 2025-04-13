@@ -17,4 +17,8 @@ class Entrenador extends Persona {
         super(nombre, genero, fechaNacimiento);
         this.esPrincipal = esPrincipal;
     }
+	
+	public String toString() {
+		return "Entrenador " + this.getNombre();
+	}
 }
