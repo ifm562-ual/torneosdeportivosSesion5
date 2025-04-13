@@ -28,7 +28,7 @@ class Jugador extends Persona {
         if (edad < 12) { return "Infantil"; }
         else if (edad < 15) { return "Cadete"; }
         else if (edad < 18) { return "Juvenil"; }
-        else if (edad < 21) { return "Juvenil"; }
+        else if (edad < 21) { return "Junior"; }
         else { return  "Absoluta"; }
     }
  
