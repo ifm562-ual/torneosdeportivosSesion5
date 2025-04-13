@@ -15,7 +15,7 @@ class Equipo {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del equipo no puede estar vacío");
         }
-        if (categoria == null || modalidad == null || entrenador == null) {
+        if (categoria == null || modalidad == null) { //|| entrenador == null) {
             throw new IllegalArgumentException("Los datos del equipo no pueden ser nulos");
         }
         this.nombre = nombre;
