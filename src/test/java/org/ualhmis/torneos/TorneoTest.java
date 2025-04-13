@@ -104,11 +104,9 @@ class TorneoTest {
 			}
 	)
 	void testSettersGetters(String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo) {
-		Object valorAntiguo, valorNuevo;
         Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
         
         
-        Method[] metodos = Torneo.class.getDeclaredMethods();
         HashMap<Class<?>, Object> valoresTest = new HashMap<>();
         
         Equipo eq = new Equipo("a", "a", "a", new Entrenador("a", "a", LocalDate.of(1980, 12, 10), false));
@@ -116,7 +114,7 @@ class TorneoTest {
         valoresTest.put(GestorTorneos.class, new GestorTorneos());
         valoresTest.put(String.class, "stringSet");
         
-        for(Method setter : metodos) 
+        for(Method setter : Torneo.class.getDeclaredMethods()) 
         {
         	if(setter.getName().startsWith("set") && setter.getParameterCount() == 1)
         	{
