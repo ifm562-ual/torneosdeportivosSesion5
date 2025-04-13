@@ -9,7 +9,19 @@ import java.util.Objects;
 class Persona {
     private String nombre;
     private String genero;
-    private LocalDate fechaNacimiento;
+    public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	private LocalDate fechaNacimiento;
 
     public Persona(String nombre, String genero, LocalDate fechaNacimiento) {
         if (nombre == null || nombre.trim().isEmpty()) {
