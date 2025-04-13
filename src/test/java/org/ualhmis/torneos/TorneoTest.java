@@ -16,7 +16,7 @@ import java.util.HashMap;
 // Registro de partidos y validación de resultados
 
 
-class TorneoTest {
+class TorneoTest extends TesteoSettersGetters {
 
 	@ParameterizedTest
 	@CsvSource
@@ -114,22 +114,7 @@ class TorneoTest {
         valoresTest.put(GestorTorneos.class, new GestorTorneos());
         valoresTest.put(String.class, "stringSet");
         
-        for(Method setter : Torneo.class.getDeclaredMethods()) 
-        {
-        	if(setter.getName().startsWith("set") && setter.getParameterCount() == 1)
-        	{
-        		Class<?> tipoParametro = setter.getParameterTypes()[0];
-        		Object valorAColocar = valoresTest.get(tipoParametro);
-        		
-        		try { setter.invoke(torneo, valorAColocar);
-				} catch (IllegalAccessException | InvocationTargetException e) { e.printStackTrace(); }
-        		
-        		try {
-        			Object valorRealObtenido = Torneo.class.getMethod( "get" + setter.getName().substring(3) ).invoke(torneo);
-        			assertEquals(valorRealObtenido, valorAColocar);
-        		}catch(NoSuchMethodException | IllegalAccessException | InvocationTargetException e) { e.printStackTrace(); }
-        	}
-        }
+        this.parteComunMetodoTesteo(torneo, valoresTest);
 		
 	}
 	

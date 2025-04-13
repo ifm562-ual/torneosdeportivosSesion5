@@ -15,7 +15,7 @@ class EquipoTest {
 	(
 			{
 				"'Carlos','Masculino','1980-03-10','true', "
-				+ "'Tigres', 'Juvenil', 'Masculino', " 
+				+ "'Tigres', 'Junior', 'Masculino', " 
 				+ "'Luis','Masculino', '2006-07-15'"
 			}
 	)
