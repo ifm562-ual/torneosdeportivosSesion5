@@ -5,8 +5,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.awt.List;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 
 // Registro de partidos y validación de resultados
 
@@ -87,6 +92,48 @@ class TorneoTest {
 
         assertThrows(IllegalArgumentException.class, () -> torneo.registrarEquipo(equipo));
     }
+	
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Leonas', 'Juvenil', 'Femenino'"
+				+ "'Liga Adulta', 'Culturismo'"
+			}
+	)
+	void testSettersGetters(String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo) {
+		Object valorAntiguo, valorNuevo;
+        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
+        
+        
+        Method[] metodos = Torneo.class.getDeclaredMethods();
+        HashMap<Class<?>, Object> valoresTest = new HashMap<>();
+        
+        Equipo eq = new Equipo("a", "a", "a", new Entrenador("a", "a", LocalDate.of(1980, 12, 10), false));
+        valoresTest.put(List.class, new ArrayList<>( Arrays.asList(eq, eq, eq) ));
+        valoresTest.put(GestorTorneos.class, new GestorTorneos());
+        valoresTest.put(String.class, "stringSet");
+        
+        for(Method setter : metodos) 
+        {
+        	if(setter.getName().startsWith("set") && setter.getParameterCount() == 1)
+        	{
+        		Class<?> tipoParametro = setter.getParameterTypes()[0];
+        		Object valorAColocar = valoresTest.get(tipoParametro);
+        		
+        		try { setter.invoke(torneo, valorAColocar);
+				} catch (IllegalAccessException | InvocationTargetException e) { e.printStackTrace(); }
+        		
+        		try {
+        			Object valorRealObtenido = Torneo.class.getMethod( "get" + setter.getName().substring(3) ).invoke(torneo);
+        			assertEquals(valorRealObtenido, valorAColocar);
+        		}catch(NoSuchMethodException | IllegalAccessException | InvocationTargetException e) { e.printStackTrace(); }
+        	}
+        }
+		
+	}
 	
 	
 }
