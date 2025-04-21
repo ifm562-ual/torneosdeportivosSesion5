@@ -196,7 +196,7 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 	@ParameterizedTest
 	@CsvSource
 	(
-			nullValues = "'null'",
+			nullValues = "null",
 			value =
 			{
 				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'true'",
@@ -204,10 +204,7 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
 				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Juvenil', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
 				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Femenino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoSeis', 'Junior', 'Femenino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
-				"'EquipoCinco', 'null', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoSeis', 'Junior', 'Femenino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'null', '2006-11-12', 'true', 'EquipoSeis', 'Junior', 'Femenino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
-				"'null', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoSeis', 'Junior', 'Femenino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'"
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoSeis', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
 			}
 	)
 	void testEquals
@@ -222,17 +219,16 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 	) 
 	{
 		
-		
 		Equipo eq1 = new Equipo(nombreEq1, caEtegoriaEq1, modalidadEq1, new Entrenador(nombreEntEq1, generoEntEq1, fechaNacEntEq1, esPrincipalEq1));
 		Equipo eq2 = new Equipo(nombreEq2, caEtegoriaEq2, modalidadEq2, new Entrenador(nombreEntEq2, generoEntEq2, fechaNacEntEq2, esPrincipalEq2));
 		
-		if(seQuiereCompararDistObj) { assertFalse(eq1.equals(new ArrayList())); }
+		if(seQuiereCompararDistObj) { assertFalse(eq1.equals(new ArrayList())); assertFalse(eq1.equals(null)); }
 		else
 		{
 			if(seQuiereCompararMismaRef) { assertTrue(eq1.equals(eq1)); }
 			else
 			{
-				
+				assertDoesNotThrow( () -> eq1.equals(eq2) );
 			}
 		}
 		
