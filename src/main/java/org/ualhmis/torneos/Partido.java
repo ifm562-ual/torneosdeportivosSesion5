@@ -38,7 +38,7 @@ class Partido {
     	boolean sePudoAsignar = false;
     	for(Instalacion iT : this.t.getSede().getInstalaciones())
     	{
-        	if(!iT.estaOcupadaInst() && iT.getTipo().trim().toLowerCase().equals(tipoInstalacion))
+        	if(!iT.getEstaOcupada() && iT.getTipo().trim().toLowerCase().equals(tipoInstalacion))
         	{
         		iT.setEstaOcupada(sePudoAsignar = true);
         		this.instalacionDondeSeJuega = iT;
@@ -51,7 +51,7 @@ class Partido {
     public void liberarInstalacion(String tipoInstalacion) {
     	for(Instalacion iT : this.t.getSede().getInstalaciones())
     	{
-        	if(iT.estaOcupadaInst())
+        	if(iT.getEstaOcupada())
         	{
         		iT.setEstaOcupada(false);
         	}

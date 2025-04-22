@@ -90,7 +90,7 @@ class PartidoTest extends TesteoSettersGetters<Partido> {
         
         Partido partido = new Partido(equipo1, equipo2, new Torneo(nombreT, deporteT, categoriaT, modalidadT, tipoT, s));
         partido.asignarInstalacion("pabellon");
-        assertTrue(partido.getInstalacionDondeSeJuega().estaOcupadaInst() == true);
+        assertTrue(partido.getInstalacionDondeSeJuega().getEstaOcupada() == true);
     }
 	
 	@ParameterizedTest
@@ -137,7 +137,7 @@ class PartidoTest extends TesteoSettersGetters<Partido> {
         Partido partido = new Partido(equipo1, equipo2, t = new Torneo(nombreT, deporteT, categoriaT, modalidadT, tipoT, s));
         partido.asignarInstalacion("pabellon");
         assertThrows(IllegalArgumentException.class, () -> new Partido(equipo1, equipo3, t).asignarInstalacion("pabellon"));
-        assertTrue(partido.getInstalacionDondeSeJuega().estaOcupadaInst() == true);
+        assertTrue(partido.getInstalacionDondeSeJuega().getEstaOcupada() == true);
     }
 	
 	@ParameterizedTest
@@ -185,7 +185,7 @@ class PartidoTest extends TesteoSettersGetters<Partido> {
         Partido partido = new Partido(equipo1, equipo2, new Torneo(nombreT, deporteT, categoriaT, modalidadT, tipoT, s));
         partido.asignarInstalacion(tipoInstalacion);
         partido.liberarInstalacion(tipoInstalacion);
-        assertTrue(partido.getInstalacionDondeSeJuega().estaOcupadaInst() == false);
+        assertTrue(partido.getInstalacionDondeSeJuega().getEstaOcupada() == false);
     }
 	
 	@ParameterizedTest

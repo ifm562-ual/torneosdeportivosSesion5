@@ -2,7 +2,7 @@ package org.ualhmis.torneos;
 
 public class Instalacion {
 	private String tipo;
-	public boolean estaOcupadaInst() {
+	public boolean getEstaOcupada() {
 		return estaOcupada;
 	}
 
