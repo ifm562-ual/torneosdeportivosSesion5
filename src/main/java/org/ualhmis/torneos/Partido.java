@@ -4,7 +4,23 @@ class Partido {
     private Equipo equipo2;
     private int golesEquipo1;
     private int golesEquipo2;
-    private Torneo t;
+    public Torneo getT() {
+		return t;
+	}
+
+	public void setT(Torneo t) {
+		this.t = t;
+	}
+
+	public Instalacion getInstalacionDondeSeJuega() {
+		return instalacionDondeSeJuega;
+	}
+
+	public void setInstalacionDondeSeJuega(Instalacion instalacionDondeSeJuega) {
+		this.instalacionDondeSeJuega = instalacionDondeSeJuega;
+	}
+
+	private Torneo t;
     private Instalacion instalacionDondeSeJuega;
 
     public Partido(Equipo equipo1, Equipo equipo2, Torneo t) {
@@ -18,12 +34,26 @@ class Partido {
         this.golesEquipo2 = golesEquipo2;
     }
     
-    public void asignarInstalacion(String tipoInstalacion) {
+    public void asignarInstalacion(String tipoInstalacion) throws IllegalArgumentException {
+    	boolean sePudoAsignar = false;
     	for(Instalacion iT : this.t.getSede().getInstalaciones())
     	{
         	if(!iT.estaOcupadaInst() && iT.getTipo().trim().toLowerCase().equals(tipoInstalacion))
         	{
-        		iT.setEstaOcupada(true);
+        		iT.setEstaOcupada(sePudoAsignar = true);
+        		this.instalacionDondeSeJuega = iT;
+        	}
+    	}
+    	
+    	if(!sePudoAsignar) { throw new IllegalArgumentException("No se pudo asignar, estaba ocupada."); }
+    }
+    
+    public void liberarInstalacion(String tipoInstalacion) {
+    	for(Instalacion iT : this.t.getSede().getInstalaciones())
+    	{
+        	if(iT.estaOcupadaInst())
+        	{
+        		iT.setEstaOcupada(false);
         	}
     	}
     }
