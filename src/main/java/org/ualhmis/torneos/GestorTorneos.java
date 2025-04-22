@@ -14,15 +14,22 @@ class GestorTorneos {
         this.equiposGestionados = new ArrayList<>();
     }
 
-    public void crearTorneo(String nombre, String deporte, String categoria, String modalidad, String tipo) {
-        this.torneos.add(new Torneo(nombre, deporte, categoria, modalidad, tipo));
+    public Torneo crearTorneo(String nombre, String deporte, String categoria, String modalidad, String tipo, String nombreSede) {
+        Torneo t;
+        Sede s = new Sede(nombreSede);
+        s.agregarInstalacion(new Instalacion("Pabellon"));
+        s.agregarInstalacion(new Instalacion("Pista"));
+        s.agregarInstalacion(new Instalacion("Campo"));
+    	this.torneos.add(t = new Torneo(nombre, deporte, categoria, modalidad, tipo, s));
+        return t;
     }
     
     public void crearEquipo(String nombre, String categoria, String modalidad, Entrenador entrenador) {
     	this.equiposGestionados.add(new Equipo(nombre, categoria, modalidad, entrenador, new Club("megaClub")));
     }
     
-    public void crearPartido(Equipo eq1, Equipo eq2) {
-    	this.partidosGestionados.add(new Partido(eq1, eq2));
+    public void crearPartido(Equipo eq1, Equipo eq2, String nombreT, String deporteT, String categT, String modalidadT, String tipoT, String nombreSede) {
+    	this.partidosGestionados.add(new Partido(eq1, eq2, crearTorneo(nombreT, deporteT, categT, modalidadT, tipoT, nombreSede)));
+    	
     }
 }

@@ -4,15 +4,28 @@ class Partido {
     private Equipo equipo2;
     private int golesEquipo1;
     private int golesEquipo2;
+    private Torneo t;
+    private Instalacion instalacionDondeSeJuega;
 
-    public Partido(Equipo equipo1, Equipo equipo2) {
+    public Partido(Equipo equipo1, Equipo equipo2, Torneo t) {
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
+        this.t = t;
     }
 
     public void registrarResultado(int golesEquipo1, int golesEquipo2) {
         this.golesEquipo1 = golesEquipo1;
         this.golesEquipo2 = golesEquipo2;
+    }
+    
+    public void asignarInstalacion(String tipoInstalacion) {
+    	for(Instalacion iT : this.t.getSede().getInstalaciones())
+    	{
+        	if(!iT.estaOcupadaInst() && iT.getTipo().trim().toLowerCase().equals(tipoInstalacion))
+        	{
+        		iT.setEstaOcupada(true);
+        	}
+    	}
     }
 
 	public Equipo getEquipo1() {

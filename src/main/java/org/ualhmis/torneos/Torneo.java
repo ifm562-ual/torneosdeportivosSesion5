@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Torneo {
-    private String nombre;
+    public Sede getSede() {
+		return sede;
+	}
+
+	public void setSede(Sede sede) {
+		this.sede = sede;
+	}
+
+	private String nombre;
     private String deporte;
     private String categoria;
     private String modalidad;
     private List<Equipo> equipos;
+    private Sede sede;
     private GestorTorneos gt;
     
     public GestorTorneos getGt() {
@@ -21,13 +30,40 @@ class Torneo {
 
 	private String tipo;
 
-    public Torneo(String nombre, String deporte, String categoria, String modalidad, String tipo) {
+    public Torneo(String nombre, String deporte, String categoria, String modalidad, String tipo, Sede sede) {
         this.nombre = nombre;
+        this.sede = sede;
+        
+        boolean encontradaAdecuada = false;
+        switch(deporte.trim().toLowerCase()) 
+        {
+        	case "baloncesto":
+        		
+        		for(Instalacion i : sede.getInstalaciones())
+        		{
+        			if(i.getTipo().toLowerCase().trim().equals("pista")) { encontradaAdecuada = true; }
+        		}
+        		
+        		break;
+        	case "voleibol":
+        		for(Instalacion i : sede.getInstalaciones())
+        		{
+        			if(i.getTipo().toLowerCase().trim().equals("pista") || i.getTipo().toLowerCase().trim().equals("pabellon")) 
+        			{ encontradaAdecuada = true; }
+        		}
+        		break;
+        	default:
+        		break;
+        }
+        
+        if(!encontradaAdecuada) { throw new IllegalArgumentException("La sede necesita una instalación adecuada para el deporte."); }
+        
         this.deporte = deporte;
         this.categoria = categoria;
         this.modalidad = modalidad;
         this.tipo = tipo;
         this.equipos = new ArrayList<>();
+
     }
 
     public void registrarEquipo(Equipo equipo) {

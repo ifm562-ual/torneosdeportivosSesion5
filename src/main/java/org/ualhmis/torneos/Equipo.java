@@ -10,6 +10,7 @@ class Equipo {
     private Entrenador entrenador;
     private Entrenador segundoEntrenador;
     private List<Jugador> jugadores;
+    private List<Partido> partidosJugados;
     private Club club;
 
     public Equipo(String nombre, String categoria, String modalidad, Entrenador entrenador, Club club) {
@@ -24,6 +25,7 @@ class Equipo {
         this.modalidad = modalidad;
         this.entrenador = entrenador;
         this.jugadores = new ArrayList<>();
+        this.partidosJugados = new ArrayList<>();
         this.club = club;
     }
 
