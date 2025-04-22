@@ -10,8 +10,9 @@ class Equipo {
     private Entrenador entrenador;
     private Entrenador segundoEntrenador;
     private List<Jugador> jugadores;
+    private Club club;
 
-    public Equipo(String nombre, String categoria, String modalidad, Entrenador entrenador) {
+    public Equipo(String nombre, String categoria, String modalidad, Entrenador entrenador, Club club) {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del equipo no puede estar vacío");
         }
@@ -23,6 +24,7 @@ class Equipo {
         this.modalidad = modalidad;
         this.entrenador = entrenador;
         this.jugadores = new ArrayList<>();
+        this.club = club;
     }
 
     

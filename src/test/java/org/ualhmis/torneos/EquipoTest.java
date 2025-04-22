@@ -18,20 +18,20 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 	@CsvSource
 	(
 			{
-				"'Carlos','Masculino','1980-03-10','true', "
-				+ "'Tigres', 'Junior', 'Masculino', " 
-				+ "'Luis','Masculino', '2006-07-15'"
+				"'Carlos','Masculino','1980-03-10','true',"
+				+ "'Tigres', 'Junior', 'Masculino'," 
+				+ "'Luis','Masculino', '2006-07-15', 'megaClub'"
 			}
 	)
     void testAgregarJugadorCorrectamente
     (
     		String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal,
     		String nombreEq, String categEq, String generoEq,
-    		String nombreJug, String generoJug, LocalDate fechaNacJug
+    		String nombreJug, String generoJug, LocalDate fechaNacJug, String nombreClub
     ) 
 	{
         Entrenador entrenador = new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal);
-        Equipo equipo = new Equipo(nombreEq, categEq, generoEq, entrenador);
+        Equipo equipo = new Equipo(nombreEq, categEq, generoEq, entrenador, new Club(nombreClub));
         
         Jugador jugador = new Jugador(nombreJug, generoJug, fechaNacJug); // Juvenil
         equipo.agregarJugador(jugador);
@@ -43,20 +43,20 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 	@CsvSource
 	(
 			{
-				"'Carlos','Masculino','1980-03-10','true', "
+				"'Carlos','Masculino','1980-03-10','true',"
 				+ "'Tigres', 'Juvenil', 'Masculino', " 
-				+ "'Luis','Masculino', '2015-05-10'"
+				+ "'Luis','Masculino', '2015-05-10', 'megaClub'"
 			}
 	)
     void testNoAgregarJugadorDeDiferenteCategoria
     (
     		String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal,
     		String nombreEq, String categEq, String generoEq,
-    		String nombreJug, String generoJug, LocalDate fechaNacJug
+    		String nombreJug, String generoJug, LocalDate fechaNacJug, String nombreClub
     ) 
 	{
         Entrenador entrenador = new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal);
-        Equipo equipo = new Equipo(nombreEq, categEq, generoEq, entrenador);
+        Equipo equipo = new Equipo(nombreEq, categEq, generoEq, entrenador, new Club(nombreClub));
 
         Jugador jugador = new Jugador(nombreJug, generoJug, fechaNacJug); // Infantil
 
@@ -69,20 +69,20 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 	@CsvSource
 	(
 			{
-				"'Carlos','Masculino','1980-03-10','true', "
+				"'Carlos','Masculino','1980-03-10','true', 'megaClub',"
 				+ "'Tigres', 'Infantil', 'Masculino', " 
 				+ "'Luis','Masculino', '2015-05-10'"
 			}
 	)
     void testJugadorYaExiste
     (
-    		String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal,
+    		String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal, String nombreClub,
     		String nombreEq, String categEq, String generoEq,
     		String nombreJug, String generoJug, LocalDate fechaNacJug
     ) 
 	{
         Entrenador entrenador = new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal);
-        Equipo equipo = new Equipo(nombreEq, categEq, generoEq, entrenador);
+        Equipo equipo = new Equipo(nombreEq, categEq, generoEq, entrenador, new Club(nombreClub));
 
         Jugador jugador = new Jugador(nombreJug, generoJug, fechaNacJug);
 
@@ -98,20 +98,20 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 			{
 				"'Carlos','Masculino','1980-03-10', "
 				+ "'Ana', 'Femenino', '1985-06-20', "
-				+ "'Tigres', 'Juvenil', 'Masculino'" 
+				+ "'Tigres', 'Juvenil', 'Masculino', 'nombreClub'" 
 			}
 	)
     void testAsignarSegundoEntrenador
     (
     		String nombreEnt1, String generoEnt1, LocalDate fechaNacEnt1,
     		String nombreEnt2, String generoEnt2, LocalDate fechaNacEnt2,
-    		String nombreEq, String categEq, String modalidadEq
+    		String nombreEq, String categEq, String modalidadEq, String nombreClub
     ) 
 	{
         Entrenador entrenador1 = new Entrenador(nombreEnt1, generoEnt1, fechaNacEnt1, true);
         Entrenador entrenador2 = new Entrenador(nombreEnt2, generoEnt2, fechaNacEnt2, false);
 
-        Equipo equipo = new Equipo(nombreEq, categEq, modalidadEq, entrenador1);
+        Equipo equipo = new Equipo(nombreEq, categEq, modalidadEq, entrenador1, new Club(nombreClub));
         equipo.asignarSegundoEntrenador(entrenador2);
 
         assertNotNull(equipo.getSegundoEntrenador());
@@ -122,16 +122,17 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 	@CsvSource
 	(
 			{
-				"'ManILoveFrogsHunters', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true'"			}
+				"'ManILoveFrogsHunters', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'megaClub'"			
+			}
 	)
 	void testSettersGetters
 	(
 			String nombre, String categoria, String modalidad,
-			String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal
+			String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal, String nombreClub
 	) 
 	{
         Entrenador ent = new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal);
-        Equipo eq = new Equipo(nombre, categoria, modalidad, ent);
+        Equipo eq = new Equipo(nombre, categoria, modalidad, ent, new Club(nombreClub));
         
         HashMap<Class<?>, Object> valoresTest = new HashMap<>();
         
@@ -149,25 +150,25 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 	@CsvSource
 	(
 			{
-				"' ', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true'",
-				"'null', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true'",
-				"'HUnters', 'null', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true'",
-				"'HUnters', 'null', 'Masculino', 'null', 'Masculino', '2006-11-12', 'true'",
-				"'Hunters', 'JaviTeniaRazon', 'null', 'null', 'Masculino', '2006-11-12', 'true'",
-				"'HUnters', 'null', 'null', 'null', 'Masculino', '2006-11-12', 'true'"
+				"' ', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'megaClub'",
+				"'null', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'megaClub'",
+				"'HUnters', 'null', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'megaClub'",
+				"'HUnters', 'null', 'Masculino', 'null', 'Masculino', '2006-11-12', 'true', 'megaClub'",
+				"'Hunters', 'JaviTeniaRazon', 'null', 'null', 'Masculino', '2006-11-12', 'true', 'megaClub'",
+				"'HUnters', 'null', 'null', 'null', 'Masculino', '2006-11-12', 'true', 'megaClub'"
 			}
 	)
 	void testEquipoIncorrecto
 	(
 			String nombre, String categoria, String modalidad,
-			String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal
+			String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal, String nombreClub
 	) 
 	{
 		String nombreEf = nombre.trim().toLowerCase().equals("null") ? null : nombre;
 		String categoriaEf = categoria.trim().toLowerCase().equals("null") ? null : categoria;
 		String modalidadEf = modalidad.trim().toLowerCase().equals("null") ? null : modalidad;
 		Entrenador ent = nombreEnt.trim().toLowerCase().equals("null") ? null : new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal);
-        assertThrows(IllegalArgumentException.class, () -> new Equipo(nombreEf, categoriaEf, modalidadEf, ent));
+        assertThrows(IllegalArgumentException.class, () -> new Equipo(nombreEf, categoriaEf, modalidadEf, ent, new Club(nombreClub)));
 		
 	}
 	
@@ -175,16 +176,16 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 	@CsvSource
 	(
 			{
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true'"
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'megaClub'"
 			}
 	)
 	void testToString
 	(
 			String nombre, String categoria, String modalidad,
-			String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal
+			String nombreEnt, String generoEnt, LocalDate fechaNacEnt, boolean esPrincipal, String nombreClub
 	) 
 	{
-		Equipo eq = new Equipo(nombre, categoria, modalidad, new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal));
+		Equipo eq = new Equipo(nombre, categoria, modalidad, new Entrenador(nombreEnt, generoEnt, fechaNacEnt, esPrincipal), new Club(nombreClub));
 		assertEquals
 		(
 				eq.toString(),
@@ -199,12 +200,12 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 			nullValues = "null",
 			value =
 			{
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'true'",
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'true', 'false'",
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Juvenil', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Femenino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
-				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoSeis', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false'",
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'true', 'megaClub'",
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'true', 'false', 'megaClub'",
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false', 'megaClub'",
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Juvenil', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false', 'megaClub'",
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoCinco', 'Junior', 'Femenino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false', 'megaClub'",
+				"'EquipoCinco', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'EquipoSeis', 'Junior', 'Masculino', 'Pepe', 'Masculino', '2006-11-12', 'true', 'false', 'false', 'megaClub'",
 			}
 	)
 	void testEquals
@@ -215,12 +216,12 @@ class EquipoTest extends TesteoSettersGetters<Equipo> {
 			String nombreEq2, String caEtegoriaEq2, String modalidadEq2,
 			String nombreEntEq2, String generoEntEq2, LocalDate fechaNacEntEq2, boolean esPrincipalEq2,
 			
-			boolean seQuiereCompararMismaRef, boolean seQuiereCompararDistObj
+			boolean seQuiereCompararMismaRef, boolean seQuiereCompararDistObj, String nombreClub
 	) 
 	{
 		
-		Equipo eq1 = new Equipo(nombreEq1, caEtegoriaEq1, modalidadEq1, new Entrenador(nombreEntEq1, generoEntEq1, fechaNacEntEq1, esPrincipalEq1));
-		Equipo eq2 = new Equipo(nombreEq2, caEtegoriaEq2, modalidadEq2, new Entrenador(nombreEntEq2, generoEntEq2, fechaNacEntEq2, esPrincipalEq2));
+		Equipo eq1 = new Equipo(nombreEq1, caEtegoriaEq1, modalidadEq1, new Entrenador(nombreEntEq1, generoEntEq1, fechaNacEntEq1, esPrincipalEq1), new Club(nombreClub));
+		Equipo eq2 = new Equipo(nombreEq2, caEtegoriaEq2, modalidadEq2, new Entrenador(nombreEntEq2, generoEntEq2, fechaNacEntEq2, esPrincipalEq2), new Club(nombreClub));
 		
 		if(seQuiereCompararDistObj) { assertFalse(eq1.equals(new ArrayList())); assertFalse(eq1.equals(null)); }
 		else

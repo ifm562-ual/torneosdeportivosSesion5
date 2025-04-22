@@ -12,8 +12,8 @@ class PartidoTest {
         Entrenador entrenador1 = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10), true);
         Entrenador entrenador2 = new Entrenador("Ana", "Femenino", LocalDate.of(1985, 6, 20), true);
 
-        Equipo equipo1 = new Equipo("Tigres", "Juvenil", "Masculino", entrenador1);
-        Equipo equipo2 = new Equipo("Leones", "Juvenil", "Masculino", entrenador2);
+        Equipo equipo1 = new Equipo("Tigres", "Juvenil", "Masculino", entrenador1, new Club("megaClub"));
+        Equipo equipo2 = new Equipo("Leones", "Juvenil", "Masculino", entrenador2, new Club("megaClub"));
 
         Partido partido = new Partido(equipo1, equipo2);
         partido.registrarResultado(2, 1);

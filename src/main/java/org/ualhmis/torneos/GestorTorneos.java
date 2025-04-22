@@ -19,7 +19,7 @@ class GestorTorneos {
     }
     
     public void crearEquipo(String nombre, String categoria, String modalidad, Entrenador entrenador) {
-    	this.equiposGestionados.add(new Equipo(nombre, categoria, modalidad, entrenador));
+    	this.equiposGestionados.add(new Equipo(nombre, categoria, modalidad, entrenador, new Club("megaClub")));
     }
     
     public void crearPartido(Equipo eq1, Equipo eq2) {

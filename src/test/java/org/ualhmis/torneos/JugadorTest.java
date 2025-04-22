@@ -60,7 +60,7 @@ class JugadorTest extends TesteoSettersGetters<Jugador> {
         
         HashMap<Class<?>, Object> valoresTest = new HashMap<>();
         
-        Equipo eq = new Equipo("a", "a", "a", new Entrenador("a", "a", LocalDate.of(1980, 12, 10), false));
+        Equipo eq = new Equipo("a", "a", "a", new Entrenador("a", "a", LocalDate.of(1980, 12, 10), false), new Club("megaClub"));
         valoresTest.put(Equipo.class, eq);
         valoresTest.put(String.class, "stringSet");
         

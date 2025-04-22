@@ -36,7 +36,7 @@ class TorneoTest extends TesteoSettersGetters {
 	{
         Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
-        Equipo equipo = new Equipo(nombreEquipo, categoriaTorneo, modalidadTorneo, entrenador);
+        Equipo equipo = new Equipo(nombreEquipo, categoriaTorneo, modalidadTorneo, entrenador, new Club("megaClub"));
         
         torneo.registrarEquipo(equipo);
         torneo.registrarEquipo(equipo);
@@ -64,7 +64,7 @@ class TorneoTest extends TesteoSettersGetters {
         
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
         
-        Equipo equipo = new Equipo(nombreEquipo, categoriaEquipo, modalidadTorneo, entrenador);
+        Equipo equipo = new Equipo(nombreEquipo, categoriaEquipo, modalidadTorneo, entrenador, new Club("megaClub"));
 
         assertThrows(IllegalArgumentException.class, () -> torneo.registrarEquipo(equipo));
     }
@@ -88,7 +88,7 @@ class TorneoTest extends TesteoSettersGetters {
         Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
         
-        Equipo equipo = new Equipo(nombreEquipo, categoriaEquipo, modalidadEquipo, entrenador);
+        Equipo equipo = new Equipo(nombreEquipo, categoriaEquipo, modalidadEquipo, entrenador, new Club("megaClub"));
 
         assertThrows(IllegalArgumentException.class, () -> torneo.registrarEquipo(equipo));
     }
@@ -109,7 +109,7 @@ class TorneoTest extends TesteoSettersGetters {
         
         HashMap<Class<?>, Object> valoresTest = new HashMap<>();
         
-        Equipo eq = new Equipo("a", "a", "a", new Entrenador("a", "a", LocalDate.of(1980, 12, 10), false));
+        Equipo eq = new Equipo("a", "a", "a", new Entrenador("a", "a", LocalDate.of(1980, 12, 10), false), new Club("megaClub"));
         valoresTest.put(List.class, new ArrayList<>( Arrays.asList(eq, eq, eq) ));
         valoresTest.put(GestorTorneos.class, new GestorTorneos());
         valoresTest.put(String.class, "stringSet");
