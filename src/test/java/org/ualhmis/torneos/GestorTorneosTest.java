@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class GestorTorneosTest extends TesteoSettersGetters<GestorTorneosTest> {
+public class GestorTorneosTest extends TesteoSettersGetters<GestorTorneos> {
 
 	@ParameterizedTest
 	@CsvSource
@@ -99,7 +99,7 @@ public class GestorTorneosTest extends TesteoSettersGetters<GestorTorneosTest> {
         valoresTest.put( new AbstractMap.SimpleEntry(List.class, Partido.class), le);
         valoresTest.put( new AbstractMap.SimpleEntry(List.class, Torneo.class), le);
         
-        this.parteComunMetodoTesteo(gt, valoresTest);
+        this.parteComunMetodoTesteoGT(gt, valoresTest);
 		
 	}
 	
