@@ -14,7 +14,31 @@ class GestorTorneos {
         this.equiposGestionados = new ArrayList<>();
     }
 
-    public Torneo crearTorneo(String nombre, String deporte, String categoria, String modalidad, String tipo, String nombreSede) {
+    public List<Torneo> getTorneos() {
+		return torneos;
+	}
+
+	public void setTorneos(List<Torneo> torneos) {
+		this.torneos = torneos;
+	}
+
+	public List<Partido> getPartidosGestionados() {
+		return partidosGestionados;
+	}
+
+	public void setPartidosGestionados(List<Partido> partidosGestionados) {
+		this.partidosGestionados = partidosGestionados;
+	}
+
+	public List<Equipo> getEquiposGestionados() {
+		return equiposGestionados;
+	}
+
+	public void setEquiposGestionados(List<Equipo> equiposGestionados) {
+		this.equiposGestionados = equiposGestionados;
+	}
+
+	public Torneo crearTorneo(String nombre, String deporte, String categoria, String modalidad, String tipo, String nombreSede) {
         Torneo t;
         Sede s = new Sede(nombreSede);
         s.agregarInstalacion(new Instalacion("Pabellon"));
