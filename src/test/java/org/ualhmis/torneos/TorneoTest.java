@@ -24,17 +24,21 @@ class TorneoTest extends TesteoSettersGetters {
 			{
 				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
 				+ "'Carlos','Masculino','1980-03-10','true', "
-				+ "'Tigres','Masculino'"
+				+ "'Tigres','Masculino', 'nombreSede'"
 			}
 	)
     void testRegistrarEquipoCorrectamente 
     (
     		String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo, 
     		String nombreEntrenador, String sexoEntrenador, LocalDate fechaNacimientoEnt, boolean entrenadorPrincipal,
-    		String nombreEquipo, String generoEquipo
+    		String nombreEquipo, String generoEquipo, String nombreSede
     ) 
 	{
-        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
+		Sede s = new Sede(nombreSede);
+		s.agregarInstalacion(new Instalacion("pabellon"));
+		s.agregarInstalacion(new Instalacion("pista"));
+		s.agregarInstalacion(new Instalacion("campo"));
+        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo, s);
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
         Equipo equipo = new Equipo(nombreEquipo, categoriaTorneo, modalidadTorneo, entrenador, new Club("megaClub"));
         
@@ -50,17 +54,21 @@ class TorneoTest extends TesteoSettersGetters {
 			{
 				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
 				+ "'Carlos','Masculino','1980-03-10','true', "
-				+ "'Tigres', 'Cadete', 'Masculino'"
+				+ "'Tigres', 'Cadete', 'Masculino', 'nombreSede'"
 			}
 	)
     void testNoRegistrarEquipoDeDiferenteCategoria
     (
     		String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo,
     		String nombreEntrenador, String sexoEntrenador, LocalDate fechaNacimientoEnt, boolean entrenadorPrincipal,
-    		String nombreEquipo, String categoriaEquipo, String generoEquipo
+    		String nombreEquipo, String categoriaEquipo, String generoEquipo, String nombreSede
     ) 
 	{
-        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
+		Sede s = new Sede(nombreSede);
+		s.agregarInstalacion(new Instalacion("pabellon"));
+		s.agregarInstalacion(new Instalacion("pista"));
+		s.agregarInstalacion(new Instalacion("campo"));
+        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo, s);
         
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
         
@@ -75,17 +83,22 @@ class TorneoTest extends TesteoSettersGetters {
 			{
 				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
 				+ "'Carlos','Masculino','1980-03-10','true', "
-				+ "'Leonas', 'Juvenil', 'Femenino'"
+				+ "'Leonas', 'Juvenil', 'Femenino', 'leonasSede'"
 			}
 	)
     void testNoRegistrarEquipoDeDiferenteModalidad
     (
+    		
     		String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo,
     		String nombreEntrenador, String sexoEntrenador, LocalDate fechaNacimientoEnt, boolean entrenadorPrincipal,
-    		String nombreEquipo, String categoriaEquipo, String modalidadEquipo
+    		String nombreEquipo, String categoriaEquipo, String modalidadEquipo, String nombreSede
     ) 
     {
-        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
+		Sede s = new Sede(nombreSede);
+		s.agregarInstalacion(new Instalacion("pabellon"));
+		s.agregarInstalacion(new Instalacion("pista"));
+		s.agregarInstalacion(new Instalacion("campo"));
+        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo, s);
         Entrenador entrenador = new Entrenador(nombreEntrenador, sexoEntrenador, fechaNacimientoEnt, entrenadorPrincipal);
         
         Equipo equipo = new Equipo(nombreEquipo, categoriaEquipo, modalidadEquipo, entrenador, new Club("megaClub"));
@@ -100,11 +113,15 @@ class TorneoTest extends TesteoSettersGetters {
 				"'Liga Juvenil','Fútbol','Juvenil','Masculino','Liga', "
 				+ "'Carlos','Masculino','1980-03-10','true', "
 				+ "'Leonas', 'Juvenil', 'Femenino'"
-				+ "'Liga Adulta', 'Culturismo'"
+				+ "'Liga', 'Culturismo', 'futbolPro'"
 			}
 	)
-	void testSettersGetters(String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo) {
-        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo);
+	void testSettersGetters(String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo, String nombreSede) {
+		Sede s = new Sede(nombreSede);
+		s.agregarInstalacion(new Instalacion("pabellon"));
+		s.agregarInstalacion(new Instalacion("pista"));
+		s.agregarInstalacion(new Instalacion("campo"));
+        Torneo torneo = new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo, s);
         
         
         HashMap<Class<?>, Object> valoresTest = new HashMap<>();
@@ -117,6 +134,90 @@ class TorneoTest extends TesteoSettersGetters {
         this.parteComunMetodoTesteo(torneo, valoresTest);
 		
 	}
+	
+	
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'Liga Juvenil','Voleibol','Juvenil','Masculino','Liga', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres','Masculino', 'nombreSede'",
+				
+				"'Liga Juvenil','Baloncesto','Juvenil','Masculino','Liga', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres','Masculino', 'nombreSede'"
+			}
+	)
+    void testSedeNoSoportaInstalacion
+    (
+    		String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo, 
+    		String nombreEntrenador, String sexoEntrenador, LocalDate fechaNacimientoEnt, boolean entrenadorPrincipal,
+    		String nombreEquipo, String generoEquipo, String nombreSede
+    ) 
+	{
+		Sede s = new Sede(nombreSede);
+		s.agregarInstalacion(new Instalacion("campo"));
+        assertThrows(IllegalArgumentException.class ,() -> new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo, s));
+    }
+	
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'Liga Juvenil','Voleibol','Juvenil','Masculino','Liga', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres','Masculino', 'nombreSede'",
+				
+				"'Liga Juvenil','Baloncesto','Juvenil','Masculino','Liga', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres','Masculino', 'nombreSede'",
+				
+				"'Liga Juvenil','Baloncesto','Juvenil','Masculino','Copa', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres','Masculino', 'nombreSede'"
+			}
+	)
+    void testSedeSoportaInstalacion
+    (
+    		String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo, 
+    		String nombreEntrenador, String sexoEntrenador, LocalDate fechaNacimientoEnt, boolean entrenadorPrincipal,
+    		String nombreEquipo, String generoEquipo, String nombreSede
+    ) 
+	{
+		Sede s = new Sede(nombreSede);
+		s.agregarInstalacion(new Instalacion("campo"));
+		s.agregarInstalacion(new Instalacion("pista"));
+		s.agregarInstalacion(new Instalacion("pabellon"));
+        assertDoesNotThrow(() -> new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo, s));
+    }
+	
+	@ParameterizedTest
+	@CsvSource
+	(
+			{
+				"'Liga Juvenil','Voleibol','Juvenil','Masculino','Ligaza', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres','Masculino', 'nombreSede'",
+				
+				"'Liga Juvenil','Baloncesto','Juvenil','Masculino','Liga super ligosa', "
+				+ "'Carlos','Masculino','1980-03-10','true', "
+				+ "'Tigres','Masculino', 'nombreSede'"
+			}
+	)
+    void testTipoTorneoNoSoportado
+    (
+    		String nombreTorneo, String deporteTorneo, String categoriaTorneo, String modalidadTorneo, String tipoTorneo, 
+    		String nombreEntrenador, String sexoEntrenador, LocalDate fechaNacimientoEnt, boolean entrenadorPrincipal,
+    		String nombreEquipo, String generoEquipo, String nombreSede
+    ) 
+	{
+		Sede s = new Sede(nombreSede);
+		s.agregarInstalacion(new Instalacion("campo"));
+		s.agregarInstalacion(new Instalacion("pista"));
+		s.agregarInstalacion(new Instalacion("pabellon"));
+        assertThrows(IllegalArgumentException.class, () -> new Torneo(nombreTorneo, deporteTorneo, categoriaTorneo, modalidadTorneo, tipoTorneo, s));
+    }
 	
 	
 }

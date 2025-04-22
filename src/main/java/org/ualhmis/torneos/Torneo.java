@@ -34,6 +34,11 @@ class Torneo {
         this.nombre = nombre;
         this.sede = sede;
         
+        if(!tipo.trim().toLowerCase().equals("liga") && !tipo.trim().toLowerCase().equals("copa"))
+        {
+        	throw new IllegalArgumentException("El torneo tiene que ser liga o copa.");
+        }
+        
         boolean encontradaAdecuada = false;
         switch(deporte.trim().toLowerCase()) 
         {
@@ -51,6 +56,12 @@ class Torneo {
         			if(i.getTipo().toLowerCase().trim().equals("pista") || i.getTipo().toLowerCase().trim().equals("pabellon")) 
         			{ encontradaAdecuada = true; }
         		}
+        		break;
+        	case "futbol":
+        		encontradaAdecuada = true;
+        		break;
+        	case "fútbol":
+        		encontradaAdecuada = true;
         		break;
         	default:
         		break;

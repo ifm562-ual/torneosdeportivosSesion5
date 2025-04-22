@@ -15,7 +15,7 @@ public class Instalacion {
 	public Instalacion(String tipo) throws IllegalArgumentException {
 		
 		String tipoL = tipo.trim().toLowerCase();
-		if(!tipoL.equals("campo") || !tipoL.equals("pista") || !tipoL.equals("pabellon"))
+		if(!tipoL.equals("campo") && !tipoL.equals("pista") && !tipoL.equals("pabellon"))
 		{
 			throw new IllegalArgumentException("Debe de ser una pista, pabellón o campo.");
 		}
