@@ -50,8 +50,8 @@ class PartidoTest extends TesteoSettersGetters<Partido> {
         Partido partido = new Partido(equipo1, equipo2, new Torneo(nombreT, deporteT, categoriaT, modalidadT, tipoT, s));
         partido.registrarResultado(2, 1);
 
-        assertEquals(2, partido.getGolesEquipo1());
-        assertEquals(1, partido.getGolesEquipo2());
+        assertEquals(2, partido.getPuntuacionEquipo1());
+        assertEquals(1, partido.getPuntuacionEquipo2());
     }
 	
 	@ParameterizedTest

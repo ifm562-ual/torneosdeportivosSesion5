@@ -2,8 +2,9 @@ package org.ualhmis.torneos;
 class Partido {
     private Equipo equipo1;
     private Equipo equipo2;
-    private int golesEquipo1;
-    private int golesEquipo2;
+    private int puntuacionEquipo1;
+    private int puntuacionEquipo2;
+    
     public Torneo getT() {
 		return t;
 	}
@@ -30,8 +31,8 @@ class Partido {
     }
 
     public void registrarResultado(int golesEquipo1, int golesEquipo2) {
-        this.golesEquipo1 = golesEquipo1;
-        this.golesEquipo2 = golesEquipo2;
+        this.puntuacionEquipo1 = golesEquipo1;
+        this.puntuacionEquipo2 = golesEquipo2;
     }
     
     public void asignarInstalacion(String tipoInstalacion) throws IllegalArgumentException {
@@ -74,20 +75,20 @@ class Partido {
 		this.equipo2 = equipo2;
 	}
 
-	public int getGolesEquipo1() {
-		return golesEquipo1;
+	public int getPuntuacionEquipo1() {
+		return puntuacionEquipo1;
 	}
 
-	public void setGolesEquipo1(int golesEquipo1) {
-		this.golesEquipo1 = golesEquipo1;
+	public void setPuntuacionEquipo1(int golesEquipo1) {
+		this.puntuacionEquipo1 = golesEquipo1;
 	}
 
-	public int getGolesEquipo2() {
-		return golesEquipo2;
+	public int getPuntuacionEquipo2() {
+		return puntuacionEquipo2;
 	}
 
-	public void setGolesEquipo2(int golesEquipo2) {
-		this.golesEquipo2 = golesEquipo2;
+	public void setPuntuacionEquipo2(int golesEquipo2) {
+		this.puntuacionEquipo2 = golesEquipo2;
 	}
     
     

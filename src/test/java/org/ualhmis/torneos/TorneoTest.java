@@ -128,7 +128,6 @@ class TorneoTest extends TesteoSettersGetters {
         
         Equipo eq = new Equipo("a", "a", "a", new Entrenador("a", "a", LocalDate.of(1980, 12, 10), false), new Club("megaClub"));
         valoresTest.put(List.class, new ArrayList<>( Arrays.asList(eq, eq, eq) ));
-        valoresTest.put(GestorTorneos.class, new GestorTorneos());
         valoresTest.put(String.class, "stringSet");
         
         this.parteComunMetodoTesteo(torneo, valoresTest);

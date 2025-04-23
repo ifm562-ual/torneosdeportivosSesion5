@@ -18,16 +18,7 @@ class Torneo {
     private String modalidad;
     private List<Equipo> equipos;
     private Sede sede;
-    private GestorTorneos gt;
     
-    public GestorTorneos getGt() {
-		return gt;
-	}
-
-	public void setGt(GestorTorneos gt) {
-		this.gt = gt;
-	}
-
 	private String tipo;
 
     public Torneo(String nombre, String deporte, String categoria, String modalidad, String tipo, Sede sede) {
